@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thank You | Realistic Repzz</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">
+      <a href="index.html">
+        <img src="https://i.ibb.co/HfjSQsBq/realistic-repzz-logo-transparent-fixed.png" alt="Realistic Repz Logo">
+      </a>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+    </nav>
+    <div class="cart">
+      <a href="cart.html">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/shopping-bag.png" alt="Cart Icon"/>
+        <span id="cart-count">0</span>
+      </a>
+    </div>
+  </header>
+
+  <section class="thank-you-section">
+    <h1>Thank You for Your Order!</h1>
+    <p>We’ve received your details and will begin processing your order immediately.</p>
+    <p>Need anything? Reach out to us on Instagram or via email at <strong>realisticrepzz@gmail.com</strong>.</p>
+    <a href="index.html" class="shop-btn" style="margin-top: 30px;">Return to Home</a>
+  </section>
+
+  <script>
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const counter = document.getElementById('cart-count');
+    const totalCount = cart.reduce((total, item) => total + item.quantity, 0);
+    if (counter) counter.textContent = totalCount;
+  </script>
+</body>
+</html>

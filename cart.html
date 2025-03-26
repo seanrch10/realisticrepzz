@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Cart | Realistic Repz</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">
+      <a href="index.html">
+        <img src="https://i.ibb.co/HfjSQsBq/realistic-repzz-logo-transparent-fixed.png" alt="Realistic Repz Logo">
+      </a>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+    </nav>
+    <a href="cart.html" class="cart">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/shopping-bag.png" alt="Cart Icon"/>
+        <span id="cart-count">0</span>
+      </a>      
+  </header>
+
+  <section class="cart-page">
+    <h1>Your Basket</h1>
+    <div id="cart-items" class="cart-items"></div>
+    <div class="cart-summary">
+      <h2>Total: €<span id="total-price">0.00</span></h2>
+      <a href="checkout.html" class="shop-btn">Proceed to Checkout</a>
+    </div>
+  </section>
+
+  <script>
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const count = cart.reduce((total, item) => total + item.quantity, 0);
+      const counter = document.getElementById('cart-count');
+      if (counter) counter.textContent = count;
+    }
+  
+    function renderCart() {
+      const cartContainer = document.getElementById('cart-items');
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let total = 0;
+  
+      if (cart.length === 0) {
+        cartContainer.innerHTML = "<p>Your cart is empty.</p>";
+        document.getElementById('total-price').textContent = "0.00";
+        return;
+      }
+  
+      cartContainer.innerHTML = "";
+      cart.forEach(item => {
+        const subtotal = item.price * item.quantity;
+        total += subtotal;
+  
+        const itemHTML = `
+  <div class="cart-item">
+    <img class="cart-thumb" src="${item.image}" alt="${item.name}" />
+    <div class="cart-details">
+      <h3>${item.name}</h3>
+      <p>Size: ${item.size}</p>
+      <div class="cart-controls">
+        <button class="qty-btn" onclick="changeQuantity('${item.name}', '${item.size}', -1)">-</button>
+        <span>${item.quantity}</span>
+        <button class="qty-btn" onclick="changeQuantity('${item.name}', '${item.size}', 1)">+</button>
+        <button class="remove-btn" onclick="removeItem('${item.name}', '${item.size}')">Remove</button>
+      </div>
+      <p>Price: €${(item.price * item.quantity).toFixed(2)}</p>
+    </div>
+  </div>
+`;
+
+
+        cartContainer.innerHTML += itemHTML;
+      });
+  
+      document.getElementById('total-price').textContent = total.toFixed(2);
+    }
+  
+    function changeQuantity(name, size, change) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const item = cart.find(p => p.name === name && p.size === size);
+  
+      if (item) {
+        item.quantity += change;
+        if (item.quantity <= 0) {
+          cart = cart.filter(p => !(p.name === name && p.size === size));
+        }
+      }
+  
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartCount();
+      renderCart();
+    }
+  
+    function removeItem(name, size) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart = cart.filter(p => !(p.name === name && p.size === size));
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartCount();
+      renderCart();
+    }
+  
+    updateCartCount();
+    renderCart();
+  </script>  
+</body>
+</html>

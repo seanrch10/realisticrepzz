@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>North Face Puffer - Purple/Black</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">
+      <a href="index.html">
+        <img src="https://i.ibb.co/B2S2ZBsk/Real-Actual-Logo-For-Realistic-Repzz.jpg" alt="Realistic Repz Logo">
+      </a>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+    </nav>
+    <a href="cart.html" class="cart">
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/shopping-bag.png" alt="Cart Icon"/>
+      <span id="cart-count">0</span>
+    </a>    
+  </header>
+
+  <section class="product-page">
+    <div class="product-wrapper">
+      <div class="product-image">
+        <img src="https://i.ibb.co/XkGLLnc8/North-Face-Puffer-Black-and-Purple.jpg" alt="North Face Puffer Purple/Black">
+      </div>
+      <div class="product-details">
+        <h1>North Face Puffer - Purple/Black</h1>
+        <p class="price">€59.99</p>
+        <div class="sizes">
+          <label>Select Size:</label>
+          <div class="size-options">
+            <button class="size-btn" data-size="XS">XS</button>
+            <button class="size-btn" data-size="S">S</button>
+            <button class="size-btn" data-size="M">M</button>
+            <button class="size-btn" data-size="L">L</button>
+            <button class="size-btn" data-size="XL">XL</button>
+          </div>
+        </div>
+        <button id="addToCartBtn" type="button" class="shop-btn">Add to Basket</button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    let selectedSize = null;
+
+    document.querySelectorAll('.size-btn').forEach(button => {
+      button.addEventListener('click', function () {
+        document.querySelectorAll('.size-btn').forEach(btn => btn.classList.remove('selected'));
+        this.classList.add('selected');
+        selectedSize = this.getAttribute('data-size');
+      });
+    });
+
+    const addBtn = document.getElementById('addToCartBtn');
+    if (addBtn) {
+      addBtn.addEventListener('click', function (event) {
+        event.preventDefault();
+
+        if (!selectedSize) {
+          alert("Please select a size.");
+          return;
+        }
+
+        const product = {
+  name: "North Face Puffer - Purple/Black",
+  price: 59.99,
+  size: selectedSize,
+  quantity: 1,
+  image: "https://i.ibb.co/XkGLLnc8/North-Face-Puffer-Black-and-Purple.jpg"
+};
+
+
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        const existing = cart.find(item => item.name === product.name && item.size === product.size);
+        if (existing) {
+          existing.quantity += 1;
+        } else {
+          cart.push(product);
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
+      });
+    }
+
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const count = cart.reduce((total, item) => total + item.quantity, 0);
+      const counter = document.getElementById('cart-count');
+      if (counter) counter.textContent = count;
+    }
+
+    updateCartCount();
+  </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Products | Realistic Repz</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">
+      <a href="index.html">
+        <img src="https://i.ibb.co/B2S2ZBsk/Real-Actual-Logo-For-Realistic-Repzz.jpg" alt="Realistic Repz Logo">
+      </a>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+    </nav>
+    <a href="cart.html" class="cart">
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/shopping-bag.png" alt="Cart Icon"/>
+      <span id="cart-count">0</span>
+    </a>
+       
+   </header>
+
+  <section class="products-preview" style="padding-top: 140px;">
+    <h2>Jackets</h2>
+    <div class="product-grid">
+
+      <!-- Product 1 -->
+      <div class="product-card">
+        <img src="https://i.ibb.co/hqYfF3T/North-Face-Puffer-Black.jpg" alt="North Face Puffer Black">
+        <div class="product-info">
+          <h3>North Face Puffer - Black</h3>
+          <p class="price">€59.99</p>
+          <a href="north-face-puffer-black.html" class="shop-btn small">View Product</a>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="product-card">
+        <img src="https://i.ibb.co/Xx52gC08/North-Face-Puffer-Black-and-Blue.jpg" alt="North Face Puffer Black and Blue">
+        <div class="product-info">
+          <h3>North Face Puffer - Black/Blue</h3>
+          <p class="price">€59.99</p>
+          <a href="north-face-puffer-black-blue.html" class="shop-btn small">View Product</a>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product-card">
+        <img src="https://i.ibb.co/XkGLLnc8/North-Face-Puffer-Black-and-Purple.jpg" alt="North Face Puffer Purple/Black">
+        <div class="product-info">
+          <h3>North Face Puffer - Purple/Black</h3>
+          <p class="price">€59.99</p>
+          <a href="north-face-puffer-purple-black.html" class="shop-btn small">View Product</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const count = cart.reduce((total, item) => total + item.quantity, 0);
+      const counter = document.getElementById('cart-count');
+      if (counter) counter.textContent = count;
+    }
+  
+    // Run it immediately on page load
+    updateCartCount();
+  </script>
+  
+</body>
+</html>
