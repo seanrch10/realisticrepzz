@@ -473,14 +473,14 @@
     justify-self: end;
   }
 
-  .hero,
-  .checkout-section,
-  .product-page,
-  .products-preview {
-    margin-top: 90px;
-    padding: 20px;
-  }
+.hero,
+.checkout-section,
+.product-page,
+.products-preview {
+  margin-top: 60px;
+  padding: 20px;
 }
+
 
   .shop-btn {
     width: 100%;
