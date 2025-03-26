@@ -531,6 +531,20 @@
   .thank-you-section {
     margin-top: 100px; /* Only apply on mobile */
   }
+        .cart-item .quantity,
+.cart-item .remove-btn {
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.cart-item .actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
 }
 
 }
