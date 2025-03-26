@@ -67,7 +67,6 @@
         <button class="qty-btn" onclick="changeQuantity('${item.name}', '${item.size}', -1)">-</button>
         <span>${item.quantity}</span>
         <button class="qty-btn" onclick="changeQuantity('${item.name}', '${item.size}', 1)">+</button>
-        <button class="remove-btn" onclick="removeItem('${item.name}', '${item.size}')">Remove</button>
       </div>
       <p>Price: €${(item.price * item.quantity).toFixed(2)}</p>
     </div>
