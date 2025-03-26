@@ -455,18 +455,19 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    height: 70px;
   }
 
   .nav-links {
     flex-direction: row;
     gap: 20px;
-    font-size: 0.9rem;
+    margin-left: auto; /* 👈 keep links pushed right on mobile */
   }
 
   .cart {
-    margin-left: auto;
+    margin-left: 10px;
   }
+}
+
 
   .hero,
   .checkout-section,
